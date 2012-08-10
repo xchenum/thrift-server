@@ -3,7 +3,7 @@ struct CollectdData {
     2: string env,
     3: string instance,
     4: string dev,
-    5: string type, 
+    5: string vtype, 
     6: i32 value
 }
 

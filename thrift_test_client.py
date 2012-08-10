@@ -11,6 +11,7 @@ from thrift.transport import TSocket
 from thrift.transport import TTransport
 from thrift.protocol import TBinaryProtocol
 
+import sys
 
 try:
     # Make socket
@@ -28,7 +29,7 @@ try:
     # Connect!
     transport.open()
 
-    m = CollectdData(timestamp=12345, value=32, instance="vm1", dev="eth0", env="ewr", type="in_bytes")
+    m = CollectdData(timestamp=int(sys.argv[1]), value=32, instance="vm1", dev="eth0", env="ewr", vtype="in_bytes")
 
     client.upload(m)
 
