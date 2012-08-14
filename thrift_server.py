@@ -33,13 +33,19 @@ class OpenTSDBUploadHandler:
         ts = int(time.time())
         if ts > self.ts + self.upload_interval:
             self._fh.close()
-            # os.system("%s import %s" % (self._tsdb_exe, self._fname))
-            # os.system("rm %s" % (self._fname))
+            os.system("%s import %s" % (self._tsdb_exe, self._fname))
+            os.system("rm %s" % (self._fname))
             self._create_cache()
             self.ts = ts
 
     def upload(self, d):
         # : CollectdData(timestamp=12345, value=32, instance='vm1', dev='eth0', env='ewr', type='in_bytes')
+
+
+        if (not d.vtype.startswith("if_packets") and not d.vtype.startswith("if_octets")):
+            return
+        
+        print str(d)
 
         self._fh.write("%s %d %d instance=%s dev=%s env=%s\n" % 
             (d.vtype, d.timestamp, d.value, d.instance, d.dev, d.env))

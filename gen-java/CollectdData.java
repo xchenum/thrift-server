@@ -28,12 +28,12 @@ import org.slf4j.LoggerFactory;
 public class CollectdData implements org.apache.thrift.TBase<CollectdData, CollectdData._Fields>, java.io.Serializable, Cloneable {
   private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("CollectdData");
 
-  private static final org.apache.thrift.protocol.TField TIMESTAMP_FIELD_DESC = new org.apache.thrift.protocol.TField("timestamp", org.apache.thrift.protocol.TType.I32, (short)1);
+  private static final org.apache.thrift.protocol.TField TIMESTAMP_FIELD_DESC = new org.apache.thrift.protocol.TField("timestamp", org.apache.thrift.protocol.TType.I64, (short)1);
   private static final org.apache.thrift.protocol.TField ENV_FIELD_DESC = new org.apache.thrift.protocol.TField("env", org.apache.thrift.protocol.TType.STRING, (short)2);
   private static final org.apache.thrift.protocol.TField INSTANCE_FIELD_DESC = new org.apache.thrift.protocol.TField("instance", org.apache.thrift.protocol.TType.STRING, (short)3);
   private static final org.apache.thrift.protocol.TField DEV_FIELD_DESC = new org.apache.thrift.protocol.TField("dev", org.apache.thrift.protocol.TType.STRING, (short)4);
   private static final org.apache.thrift.protocol.TField VTYPE_FIELD_DESC = new org.apache.thrift.protocol.TField("vtype", org.apache.thrift.protocol.TType.STRING, (short)5);
-  private static final org.apache.thrift.protocol.TField VALUE_FIELD_DESC = new org.apache.thrift.protocol.TField("value", org.apache.thrift.protocol.TType.I32, (short)6);
+  private static final org.apache.thrift.protocol.TField VALUE_FIELD_DESC = new org.apache.thrift.protocol.TField("value", org.apache.thrift.protocol.TType.I64, (short)6);
 
   private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
   static {
@@ -41,12 +41,12 @@ public class CollectdData implements org.apache.thrift.TBase<CollectdData, Colle
     schemes.put(TupleScheme.class, new CollectdDataTupleSchemeFactory());
   }
 
-  public int timestamp; // required
+  public long timestamp; // required
   public String env; // required
   public String instance; // required
   public String dev; // required
   public String vtype; // required
-  public int value; // required
+  public long value; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -129,7 +129,7 @@ public class CollectdData implements org.apache.thrift.TBase<CollectdData, Colle
   static {
     Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
     tmpMap.put(_Fields.TIMESTAMP, new org.apache.thrift.meta_data.FieldMetaData("timestamp", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
     tmpMap.put(_Fields.ENV, new org.apache.thrift.meta_data.FieldMetaData("env", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.INSTANCE, new org.apache.thrift.meta_data.FieldMetaData("instance", org.apache.thrift.TFieldRequirementType.DEFAULT, 
@@ -139,7 +139,7 @@ public class CollectdData implements org.apache.thrift.TBase<CollectdData, Colle
     tmpMap.put(_Fields.VTYPE, new org.apache.thrift.meta_data.FieldMetaData("vtype", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.VALUE, new org.apache.thrift.meta_data.FieldMetaData("value", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
     metaDataMap = Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(CollectdData.class, metaDataMap);
   }
@@ -148,12 +148,12 @@ public class CollectdData implements org.apache.thrift.TBase<CollectdData, Colle
   }
 
   public CollectdData(
-    int timestamp,
+    long timestamp,
     String env,
     String instance,
     String dev,
     String vtype,
-    int value)
+    long value)
   {
     this();
     this.timestamp = timestamp;
@@ -204,11 +204,11 @@ public class CollectdData implements org.apache.thrift.TBase<CollectdData, Colle
     this.value = 0;
   }
 
-  public int getTimestamp() {
+  public long getTimestamp() {
     return this.timestamp;
   }
 
-  public CollectdData setTimestamp(int timestamp) {
+  public CollectdData setTimestamp(long timestamp) {
     this.timestamp = timestamp;
     setTimestampIsSet(true);
     return this;
@@ -323,11 +323,11 @@ public class CollectdData implements org.apache.thrift.TBase<CollectdData, Colle
     }
   }
 
-  public int getValue() {
+  public long getValue() {
     return this.value;
   }
 
-  public CollectdData setValue(int value) {
+  public CollectdData setValue(long value) {
     this.value = value;
     setValueIsSet(true);
     return this;
@@ -352,7 +352,7 @@ public class CollectdData implements org.apache.thrift.TBase<CollectdData, Colle
       if (value == null) {
         unsetTimestamp();
       } else {
-        setTimestamp((Integer)value);
+        setTimestamp((Long)value);
       }
       break;
 
@@ -392,7 +392,7 @@ public class CollectdData implements org.apache.thrift.TBase<CollectdData, Colle
       if (value == null) {
         unsetValue();
       } else {
-        setValue((Integer)value);
+        setValue((Long)value);
       }
       break;
 
@@ -402,7 +402,7 @@ public class CollectdData implements org.apache.thrift.TBase<CollectdData, Colle
   public Object getFieldValue(_Fields field) {
     switch (field) {
     case TIMESTAMP:
-      return Integer.valueOf(getTimestamp());
+      return Long.valueOf(getTimestamp());
 
     case ENV:
       return getEnv();
@@ -417,7 +417,7 @@ public class CollectdData implements org.apache.thrift.TBase<CollectdData, Colle
       return getVtype();
 
     case VALUE:
-      return Integer.valueOf(getValue());
+      return Long.valueOf(getValue());
 
     }
     throw new IllegalStateException();
@@ -693,8 +693,8 @@ public class CollectdData implements org.apache.thrift.TBase<CollectdData, Colle
         }
         switch (schemeField.id) {
           case 1: // TIMESTAMP
-            if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
-              struct.timestamp = iprot.readI32();
+            if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
+              struct.timestamp = iprot.readI64();
               struct.setTimestampIsSet(true);
             } else { 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -733,8 +733,8 @@ public class CollectdData implements org.apache.thrift.TBase<CollectdData, Colle
             }
             break;
           case 6: // VALUE
-            if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
-              struct.value = iprot.readI32();
+            if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
+              struct.value = iprot.readI64();
               struct.setValueIsSet(true);
             } else { 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -756,7 +756,7 @@ public class CollectdData implements org.apache.thrift.TBase<CollectdData, Colle
 
       oprot.writeStructBegin(STRUCT_DESC);
       oprot.writeFieldBegin(TIMESTAMP_FIELD_DESC);
-      oprot.writeI32(struct.timestamp);
+      oprot.writeI64(struct.timestamp);
       oprot.writeFieldEnd();
       if (struct.env != null) {
         oprot.writeFieldBegin(ENV_FIELD_DESC);
@@ -779,7 +779,7 @@ public class CollectdData implements org.apache.thrift.TBase<CollectdData, Colle
         oprot.writeFieldEnd();
       }
       oprot.writeFieldBegin(VALUE_FIELD_DESC);
-      oprot.writeI32(struct.value);
+      oprot.writeI64(struct.value);
       oprot.writeFieldEnd();
       oprot.writeFieldStop();
       oprot.writeStructEnd();
@@ -819,7 +819,7 @@ public class CollectdData implements org.apache.thrift.TBase<CollectdData, Colle
       }
       oprot.writeBitSet(optionals, 6);
       if (struct.isSetTimestamp()) {
-        oprot.writeI32(struct.timestamp);
+        oprot.writeI64(struct.timestamp);
       }
       if (struct.isSetEnv()) {
         oprot.writeString(struct.env);
@@ -834,7 +834,7 @@ public class CollectdData implements org.apache.thrift.TBase<CollectdData, Colle
         oprot.writeString(struct.vtype);
       }
       if (struct.isSetValue()) {
-        oprot.writeI32(struct.value);
+        oprot.writeI64(struct.value);
       }
     }
 
@@ -843,7 +843,7 @@ public class CollectdData implements org.apache.thrift.TBase<CollectdData, Colle
       TTupleProtocol iprot = (TTupleProtocol) prot;
       BitSet incoming = iprot.readBitSet(6);
       if (incoming.get(0)) {
-        struct.timestamp = iprot.readI32();
+        struct.timestamp = iprot.readI64();
         struct.setTimestampIsSet(true);
       }
       if (incoming.get(1)) {
@@ -863,7 +863,7 @@ public class CollectdData implements org.apache.thrift.TBase<CollectdData, Colle
         struct.setVtypeIsSet(true);
       }
       if (incoming.get(5)) {
-        struct.value = iprot.readI32();
+        struct.value = iprot.readI64();
         struct.setValueIsSet(true);
       }
     }

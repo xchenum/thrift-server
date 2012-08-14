@@ -30,12 +30,12 @@ class CollectdData:
 
   thrift_spec = (
     None, # 0
-    (1, TType.I32, 'timestamp', None, None, ), # 1
+    (1, TType.I64, 'timestamp', None, None, ), # 1
     (2, TType.STRING, 'env', None, None, ), # 2
     (3, TType.STRING, 'instance', None, None, ), # 3
     (4, TType.STRING, 'dev', None, None, ), # 4
     (5, TType.STRING, 'vtype', None, None, ), # 5
-    (6, TType.I32, 'value', None, None, ), # 6
+    (6, TType.I64, 'value', None, None, ), # 6
   )
 
   def __init__(self, timestamp=None, env=None, instance=None, dev=None, vtype=None, value=None,):
@@ -56,8 +56,8 @@ class CollectdData:
       if ftype == TType.STOP:
         break
       if fid == 1:
-        if ftype == TType.I32:
-          self.timestamp = iprot.readI32();
+        if ftype == TType.I64:
+          self.timestamp = iprot.readI64();
         else:
           iprot.skip(ftype)
       elif fid == 2:
@@ -81,8 +81,8 @@ class CollectdData:
         else:
           iprot.skip(ftype)
       elif fid == 6:
-        if ftype == TType.I32:
-          self.value = iprot.readI32();
+        if ftype == TType.I64:
+          self.value = iprot.readI64();
         else:
           iprot.skip(ftype)
       else:
@@ -96,8 +96,8 @@ class CollectdData:
       return
     oprot.writeStructBegin('CollectdData')
     if self.timestamp is not None:
-      oprot.writeFieldBegin('timestamp', TType.I32, 1)
-      oprot.writeI32(self.timestamp)
+      oprot.writeFieldBegin('timestamp', TType.I64, 1)
+      oprot.writeI64(self.timestamp)
       oprot.writeFieldEnd()
     if self.env is not None:
       oprot.writeFieldBegin('env', TType.STRING, 2)
@@ -116,8 +116,8 @@ class CollectdData:
       oprot.writeString(self.vtype)
       oprot.writeFieldEnd()
     if self.value is not None:
-      oprot.writeFieldBegin('value', TType.I32, 6)
-      oprot.writeI32(self.value)
+      oprot.writeFieldBegin('value', TType.I64, 6)
+      oprot.writeI64(self.value)
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
     oprot.writeStructEnd()

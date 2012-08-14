@@ -1,10 +1,10 @@
 struct CollectdData {
-    1: i32 timestamp,
+    1: i64 timestamp,
     2: string env,
     3: string instance,
     4: string dev,
     5: string vtype, 
-    6: i32 value
+    6: i64 value
 }
 
 service OpenTSDBUpload {
