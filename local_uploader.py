@@ -65,7 +65,7 @@ for line in open(sys.argv[3]):
             tmp.write(w + "\n")
     tmp.close()
 
-    os.system("%s import --zkquorum zk-1,zk-2,zk-3,zk-4,zk-5 /tmp/uploader-v2" % (sys.argv[4))
+    os.system("%s import --zkquorum zk-1,zk-2,zk-3,zk-4,zk-5 /tmp/uploader-v2" % (sys.argv[4]))
     os.system("rm %s" % (self._fname))
 
 

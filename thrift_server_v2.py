@@ -17,7 +17,7 @@ import sys
 import os
 
 class OpenTSDBUploadV2Handler:
-    upload_interval = 5
+    upload_interval = 30
 
     def __init__(self, tsdb_exe):
         self.ts = int(time.time())
@@ -26,7 +26,7 @@ class OpenTSDBUploadV2Handler:
         self._counter = 0
 
     def _create_cache(self):
-        self._fname = "/tmp/collectd-"+str(self.ts)
+        self._fname = "/tmp/collectd-v2-"+str(self.ts)
         self._fh = open(self._fname, "w")
     
     def _flush_upload(self):
@@ -50,7 +50,7 @@ class OpenTSDBUploadV2Handler:
             return
 
         line = "%s %d %d" % (d.vtype, d.timestamp, d.value)
-        for tag in ["instance", "dev", "env", "tenantid", "cnode"]:
+        for tag in ["instance", "dev", "env", "tenant", "cnode"]:
             v = getattr(d, tag, "")
             if v is None or v == "":
                 continue
@@ -58,10 +58,10 @@ class OpenTSDBUploadV2Handler:
 
         self._fh.write(line + "\n")
         self._counter += 1
-        if (self._counter == 100):
+        if (self._counter == 10000):
             self._flush_upload()
             self._counter = 0
-            print "100 entries flushed"
+            print "10000 entries flushed"
 
 if len(sys.argv) != 2:
     print "usage: python %s <tsdb_path>" % (sys.argv[0])
