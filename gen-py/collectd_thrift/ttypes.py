@@ -136,3 +136,147 @@ class CollectdData:
 
   def __ne__(self, other):
     return not (self == other)
+
+class CollectdDataV2:
+  """
+  Attributes:
+   - timestamp
+   - env
+   - instance
+   - dev
+   - vtype
+   - value
+   - cnode
+   - tenant
+  """
+
+  thrift_spec = (
+    None, # 0
+    (1, TType.I64, 'timestamp', None, None, ), # 1
+    (2, TType.STRING, 'env', None, None, ), # 2
+    (3, TType.STRING, 'instance', None, None, ), # 3
+    (4, TType.STRING, 'dev', None, None, ), # 4
+    (5, TType.STRING, 'vtype', None, None, ), # 5
+    (6, TType.I64, 'value', None, None, ), # 6
+    (7, TType.STRING, 'cnode', None, None, ), # 7
+    (8, TType.STRING, 'tenant', None, None, ), # 8
+  )
+
+  def __init__(self, timestamp=None, env=None, instance=None, dev=None, vtype=None, value=None, cnode=None, tenant=None,):
+    self.timestamp = timestamp
+    self.env = env
+    self.instance = instance
+    self.dev = dev
+    self.vtype = vtype
+    self.value = value
+    self.cnode = cnode
+    self.tenant = tenant
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 1:
+        if ftype == TType.I64:
+          self.timestamp = iprot.readI64();
+        else:
+          iprot.skip(ftype)
+      elif fid == 2:
+        if ftype == TType.STRING:
+          self.env = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 3:
+        if ftype == TType.STRING:
+          self.instance = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 4:
+        if ftype == TType.STRING:
+          self.dev = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 5:
+        if ftype == TType.STRING:
+          self.vtype = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 6:
+        if ftype == TType.I64:
+          self.value = iprot.readI64();
+        else:
+          iprot.skip(ftype)
+      elif fid == 7:
+        if ftype == TType.STRING:
+          self.cnode = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 8:
+        if ftype == TType.STRING:
+          self.tenant = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('CollectdDataV2')
+    if self.timestamp is not None:
+      oprot.writeFieldBegin('timestamp', TType.I64, 1)
+      oprot.writeI64(self.timestamp)
+      oprot.writeFieldEnd()
+    if self.env is not None:
+      oprot.writeFieldBegin('env', TType.STRING, 2)
+      oprot.writeString(self.env)
+      oprot.writeFieldEnd()
+    if self.instance is not None:
+      oprot.writeFieldBegin('instance', TType.STRING, 3)
+      oprot.writeString(self.instance)
+      oprot.writeFieldEnd()
+    if self.dev is not None:
+      oprot.writeFieldBegin('dev', TType.STRING, 4)
+      oprot.writeString(self.dev)
+      oprot.writeFieldEnd()
+    if self.vtype is not None:
+      oprot.writeFieldBegin('vtype', TType.STRING, 5)
+      oprot.writeString(self.vtype)
+      oprot.writeFieldEnd()
+    if self.value is not None:
+      oprot.writeFieldBegin('value', TType.I64, 6)
+      oprot.writeI64(self.value)
+      oprot.writeFieldEnd()
+    if self.cnode is not None:
+      oprot.writeFieldBegin('cnode', TType.STRING, 7)
+      oprot.writeString(self.cnode)
+      oprot.writeFieldEnd()
+    if self.tenant is not None:
+      oprot.writeFieldBegin('tenant', TType.STRING, 8)
+      oprot.writeString(self.tenant)
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    return
+
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
