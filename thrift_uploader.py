@@ -24,12 +24,13 @@ for line in open(sys.argv[4]):
     inst_to_tenant[ p[0].partition("-")[2] ] = p[1]
 
 client = None
+transport = None
 
 try:
     transport = TSocket.TSocket(sys.argv[1], int(sys.argv[2]))
     transport = TTransport.TBufferedTransport(transport)
     protocol = TBinaryProtocol.TBinaryProtocol(transport)
-    client = OpenTSDBUpload.Client(protocol)
+    client = OpenTSDBUploadV2.Client(protocol)
                             
     transport.open()
 
@@ -37,7 +38,11 @@ except Thrift.TException, tx:
     print "%s" % (tx.message)
     exit(1)
 
+filecount = 0
 for line in open(sys.argv[3]):
+    filecount += 1
+    print "file #" + str(filecount)
+
     instance = line.strip().split("/")[-3].partition("-")[2]
     if not inst_to_tenant.has_key(instance):
         continue
@@ -49,7 +54,7 @@ for line in open(sys.argv[3]):
 
     fh = open(line.strip())
     header = fh.readline()
-    header = header.split(",")
+    header = header.strip().split(",")
 
     for l in fh.readlines():
         ar = l.strip().split(",")
@@ -64,5 +69,7 @@ for line in open(sys.argv[3]):
             d.tenant = inst_to_tenant[instance]
             d.value = int(ar[i])
 
-            print d
-            exit(0)
+            client.upload(d)
+
+transport.close()
+
